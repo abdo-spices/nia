@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Logosvg from '/icon_logo.svg';
+import Logosvg from '/icon.svg';
 import { Toaster, toast } from 'sonner'
 
 function App() {
