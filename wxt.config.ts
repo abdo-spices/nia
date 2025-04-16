@@ -1,7 +1,15 @@
+// wxt.config.ts
 import { defineConfig } from 'wxt';
+import react from '@vitejs/plugin-react';
 
-// See https://wxt.dev/api/config.html
 export default defineConfig({
-  extensionApi: 'chrome',
+  manifest: {
+    name: 'Website Opened Notifier',
+    description: 'Notifies when a website is opened or reopened.',
+    permissions: ['notifications', 'tabs'],
+  },
   modules: ['@wxt-dev/module-react',"@wxt-dev/auto-icons"],
+  vite: () => ({
+    plugins: [react()],
+  }),
 });

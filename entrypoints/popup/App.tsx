@@ -1,26 +1,23 @@
-import { useState } from 'react';
-import Logosvg from '/icon.svg';
-import { Toaster, toast } from 'sonner'
+import { useEffect } from 'react';
+import { toast, Toaster } from 'sonner';
 
 function App() {
-  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    chrome.runtime.onMessage.addListener((message) => {
+      if (message.type === 'PAGE_VISIT') {
+        toast(`Visited: ${message.url}`);
+      }
+    });
+  }, []);
 
   return (
-    <>
-      <div>
-      <Toaster closeButton  />
-
-        <a href="https://wxt.dev" target="_blank">
-          <img src={Logosvg} className="logo" alt="WXT logo" />
-        </a>
-      </div>
-      <div className="card">
-      <button onClick={() => toast('My first toast')}>
-        Give me a toast
-      </button>
-      </div>
-    </>
+    <div>
+      <Toaster position="top-center" />
+      <h1 className="text-lg font-bold">Navigation Notifier</h1>
+    </div>
   );
+  
 }
 
 export default App;
